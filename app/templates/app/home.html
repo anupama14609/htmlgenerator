@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Pyscript Tags Analyzer{% endblock title %}
+{% block active %} active{% endblock active %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row bg-dark p-2 my-2 text-light align-items-center">
+  <span class="display-4 fst-italic text-center "><strong>  Text To Html Editor </strong>  </span> 
+    <hr class="bg-light">
+</div>
+
+ <div class="row">
+      <div class="col bg-info p-3">
+        <div class="form-group texteditor">
+                {{form.media}}
+                {{form|crispy}}
+             <input type="submit" class="btn btn-primary" 
+             onclick="ConvertText()" value="Convert To Html">
+        </div>
+      </div>
+
+      <div class="col bg-warning p-3">
+        <label for="id_text" class=" requiredField">
+            Result <span class="asteriskField">*</span> 
+        </label>
+            <div class="form-group">
+                <textarea name="" class="form-control" id="htmldata" cols="30" rows="10"></textarea>
+            </div>
+      </div>
+
+    </div>
+
+{% endblock content %}
+
+
+{% block javascript %} 
+<script>
+ function ConvertText(){
+        var x = CKEDITOR.instances['id_body'].getData();
+        var y=document.getElementById('htmldata');
+        y.innerHTML=x;
+    }
+</script>
+{% endblock javascript %}
+
